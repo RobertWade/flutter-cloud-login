@@ -27,18 +27,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool _takingoff = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
       children: <Widget>[
         Container(
-          child: FlareActor(
-            'assets/background.flr',
-            alignment: Alignment.center,
-            fit: BoxFit.contain,
-            animation: 'success',
-          ),
+          child: FlareActor('assets/background.flr',
+              alignment: Alignment.center,
+              fit: BoxFit.contain,
+              animation: _takingoff ? 'takeoff' : 'success', callback: (name) {
+            print(name);
+            if (name == "takeoff") {
+              setState(() {
+                _takingoff = false;
+              });
+            }
+          }),
         ),
         Center(
           child: Column(
@@ -93,7 +99,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     SizedBox(height: 20),
                     MaterialButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        setState(() {
+                          _takingoff = true;
+                        });
+                      },
                       child: Text(
                         'Login',
                         style: TextStyle(color: Colors.white),
