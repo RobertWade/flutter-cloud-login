@@ -50,10 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Text(
-                'Welcome',
-                style: TextStyle(color: Colors.blue[900], fontSize: 30),
-              ),
               Container(
                 padding: EdgeInsets.all(20.0),
                 child: Column(
